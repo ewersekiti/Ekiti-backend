@@ -4,6 +4,7 @@ import { connectDB } from './config/db.js'
 import { errorHandler } from './middlewares/error.middleware.js'
 import { seedSystemRoles } from './controllers/role.controller.js'
 import { warmRoleCache } from './utils/rolePermissionsCache.js'
+import { seedConfigDefaults } from './controllers/config.controller.js'
 
 import authRoutes from './routes/auth.routes.js'
 import incidentRoutes from './routes/incident.routes.js'
@@ -12,6 +13,7 @@ import roleRoutes from './routes/role.routes.js'
 import reportRoutes from './routes/report.routes.js'
 import alertRoutes from './routes/alert.routes.js'
 import agencyRoutes from './routes/agency.routes.js'
+import configRoutes from './routes/config.routes.js'
 
 const app = express()
 
@@ -19,6 +21,7 @@ const app = express()
 connectDB().then(async () => {
   await seedSystemRoles()
   await warmRoleCache()
+  await seedConfigDefaults()
 })
 
 // CORS — allow web dev server, Expo web, and any configured frontend URL
@@ -61,6 +64,7 @@ app.use('/api/roles', roleRoutes)
 app.use('/api/reports', reportRoutes)
 app.use('/api/alerts', alertRoutes)
 app.use('/api/agencies', agencyRoutes)
+app.use('/api/config',   configRoutes)
 
 // Global error handler — must be last
 app.use(errorHandler)

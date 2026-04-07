@@ -30,11 +30,7 @@ const IncidentSchema = new mongoose.Schema(
     // Core info
     title: { type: String, required: true, trim: true },
     description: { type: String, required: true, trim: true },
-    type: {
-      type: String,
-      enum: ['flood', 'fire', 'accident', 'security', 'medical', 'theft', 'assault', 'fraud', 'other'],
-      default: 'other',
-    },
+    type: { type: String, trim: true, default: 'other' },
 
     // Location
     location: { type: String, trim: true },

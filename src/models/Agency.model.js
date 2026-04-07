@@ -10,6 +10,7 @@ const AgencySchema = new mongoose.Schema(
       enum: ['security', 'medical', 'fire', 'transport', 'government', 'other'],
       default: 'other',
     },
+    logoUrl: { type: String, trim: true, default: '' },
     status: { type: String, enum: ['active', 'inactive'], default: 'active' },
   },
   { timestamps: true }

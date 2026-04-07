@@ -40,3 +40,6 @@ export const incidentUpload = upload.fields([
   { name: 'images', maxCount: 8 },
   { name: 'videos', maxCount: 2 },
 ])
+
+// Use on partner/agency logo upload: single image field named 'logo'
+export const logoUpload = upload.single('logo')

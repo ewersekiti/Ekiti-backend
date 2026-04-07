@@ -7,6 +7,7 @@ export const ROLE_PERMISSIONS = {
     'delete_incident',
     'manage_users',
     'manage_roles',
+    'manage_config',
     'view_reports',
     'send_alert',
   ],
@@ -45,6 +46,7 @@ export const ALL_PERMISSION_KEYS = [
   'delete_incident',
   'manage_users',
   'manage_roles',
+  'manage_config',
   'view_reports',
   'send_alert',
 ]
