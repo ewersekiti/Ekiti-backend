@@ -81,6 +81,9 @@ const IncidentSchema = new mongoose.Schema(
     // Activity log
     timeline: [TimelineSchema],
 
+    // Resolution
+    resolutionReport: { type: String, trim: true, default: '' },
+
     // Raw counts from app before actual upload
     imageCount: { type: Number, default: 0 },
     videoCount: { type: Number, default: 0 },

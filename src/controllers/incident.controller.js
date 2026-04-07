@@ -256,6 +256,10 @@ export const updateStatus = async (req, res) => {
   const prevStatus = incident.status
   incident.status = status
 
+  if (status === 'resolved' && req.body.resolutionReport?.trim()) {
+    incident.resolutionReport = req.body.resolutionReport.trim()
+  }
+
   const statusLabels = { pending: 'Pending', in_progress: 'In Progress', resolved: 'Resolved' }
   incident.timeline.push({
     action:    `Status changed from ${statusLabels[prevStatus]} to ${statusLabels[status]}`,
@@ -270,7 +274,7 @@ export const updateStatus = async (req, res) => {
     incident.timeline.push({
       action:    'Incident resolved and closed',
       status:    'resolved',
-      note:      'Case closed',
+      note:      incident.resolutionReport ? 'Resolution report submitted' : 'Case closed',
       time:      new Date(),
       timestamp: new Date(),
       by:        req.user.name,
