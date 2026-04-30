@@ -25,27 +25,18 @@ connectDB().then(async () => {
 })
 
 // CORS — allow web dev server, Expo web, and any configured frontend URL
-const allowedOrigins = [
-  'http://localhost:5173',
-  'http://localhost:8081',
-  'http://localhost:3000',
-  'https://ekitistateewers.vercel.app',
-  'https://ewersekitistate.netlify.app',
-    'https://ewers.ekitistate.gov.ng',
-  'https://ewers.sassysoles.com.ng',
-  process.env.FRONTEND_URL,
-].filter(Boolean)
-
 app.use(
   cors({
-    origin: (origin, cb) => {
-      // Allow requests with no origin (mobile apps, curl, Postman)
-      if (!origin || allowedOrigins.includes(origin)) return cb(null, true)
-      cb(new Error(`CORS: origin ${origin} not allowed`))
-    },
+    origin: true, // <-- allows ALL origins automatically
     credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
   })
 )
+
+// ✅ Handle preflight requests (VERY IMPORTANT)
+app.options('*', cors())
+
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
