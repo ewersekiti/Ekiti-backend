@@ -47,7 +47,12 @@ export const login = async (req, res) => {
   })
 }
 
-// PATCH /api/auth/password
+
+
+
+
+
+
 export const changePassword = async (req, res) => {
   const { currentPassword, newPassword } = req.body
 
